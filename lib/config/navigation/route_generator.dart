@@ -22,7 +22,7 @@ class RouteGenerator {
         return AppRoutes.slideUpRoute(RegisterView());
 
       case RoutesName.home:
-        return AppRoutes.slideUpRoute(HomeView());
+        return AppRoutes.slideUpRoute(MyHomePage());
 
       default:
         return _errorRoute();

@@ -1,3 +1,4 @@
+export 'base/base_app.dart';
 export 'app_button.dart';
 export 'gender_drop_down.dart';
 export 'custom_appbar.dart';

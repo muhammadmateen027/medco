@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:medical_suit/config/config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -33,7 +34,7 @@ class StorageService implements Storage {
     final SharedPreferences pref = await prefs;
     await Future.delayed(Duration(seconds: 2));
     try {
-      if(pref.getString('key')!.isEmpty) {
+      if(pref.getString('${dotenv.env['AUTH']}')!.isEmpty) {
         navigationService.pushReplacementNamed(RoutesName.login);
         return;
       }

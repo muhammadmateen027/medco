@@ -3,45 +3,46 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:medical_suit/blocs/blocs.dart';
 import 'package:medical_suit/config/config.dart';
-import 'package:medical_suit/services/services.dart';
+import 'package:medical_suit/presentation/global/global.dart';
 import 'package:supabase/supabase.dart';
 
-class HomeView extends StatefulWidget {
-  const HomeView({Key? key}) : super(key: key);
+class MyHomePage extends BasePage {
+  MyHomePage({Key? key}) : super(key: key);
 
   @override
-  _HomeViewState createState() => _HomeViewState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _MyHomePageState extends BaseState<MyHomePage> with BasicPage{
+  late User? user;
   @override
-  Widget build(BuildContext context) {
-    final currentUser = GetIt.instance<SupabaseClient>().auth.user();
+  void initState()  {
+    user = locator<SupabaseClient>().auth.user();
+    super.initState();
+  }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home'),
-      ),
-      body: Container(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Hi ${currentUser?.email}'),
-              SizedBox(
-                height: 30,
-              ),
-              MaterialButton(
-                color: Colors.red,
-                onPressed: () {
-                  context.read<AuthenticationBloc>().add(SignOut());
-                },
-                child: Text('Logout'),
-              )
-            ],
+  @override
+  Widget body(BuildContext context){
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('Hi ${user?.email}'),
+          SizedBox(
+            height: 30,
           ),
-        ),
+          MaterialButton(
+            color: Colors.red,
+            onPressed: () {
+              context.read<AuthenticationBloc>().add(SignOut());
+            },
+            child: Text('Logout'),
+          )
+        ],
       ),
     );
   }
+
+  @override
+  String screenName() => 'Home';
 }
