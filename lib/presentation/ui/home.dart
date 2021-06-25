@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 import 'package:medical_suit/blocs/blocs.dart';
-import 'package:medical_suit/config/config.dart';
 import 'package:medical_suit/presentation/global/global.dart';
-import 'package:supabase/supabase.dart';
 
 class MyHomePage extends BasePage {
   MyHomePage({Key? key}) : super(key: key);
@@ -13,24 +10,29 @@ class MyHomePage extends BasePage {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends BaseState<MyHomePage> with BasicPage{
-  late User? user;
+class _MyHomePageState extends BaseState<MyHomePage> with BasicPage {
+
   @override
-  void initState()  {
-    user = locator<SupabaseClient>().auth.user();
+  void initState() {
+    context.read<AuthenticationBloc>()..add(LoadUser());
     super.initState();
   }
 
   @override
-  Widget body(BuildContext context){
+  Widget body(BuildContext context) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Hi ${user?.email}'),
-          SizedBox(
-            height: 30,
+          BlocBuilder<AuthenticationBloc, AuthenticationState>(
+            builder: (_, state) {
+              if (state is UserView) {
+                return Text('Hi ${state.user.email}');
+              }
+              return SizedBox();
+            },
           ),
+          SizedBox(height: 30),
           MaterialButton(
             color: Colors.red,
             onPressed: () {
@@ -45,4 +47,7 @@ class _MyHomePageState extends BaseState<MyHomePage> with BasicPage{
 
   @override
   String screenName() => 'Home';
+
+  @override
+  List<Widget>? appBarActions() => null;
 }

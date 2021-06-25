@@ -9,6 +9,8 @@ abstract class AuthenticationEvent {
 
 class AuthenticationStarted extends AuthenticationEvent {}
 
+class LoadUser extends AuthenticationEvent {}
+
 class SignIn extends AuthenticationEvent {
   final String email;
   final String password;

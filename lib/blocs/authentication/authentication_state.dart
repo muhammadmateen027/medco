@@ -9,9 +9,12 @@ abstract class AuthenticationState {
 
 class AuthenticationInitial extends AuthenticationState {}
 
-class ViewDocumentForm extends AuthenticationState {}
-class ViewPersonalInfoForm extends AuthenticationState {}
-class ViewBankInfoForm extends AuthenticationState {}
-class ViewVehicleInfoForm extends AuthenticationState {}
-class ViewQuestionnaireForm extends AuthenticationState {}
+class UserView extends AuthenticationState {
+  final User user;
+
+  UserView(this.user);
+
+  @override
+  List<Object> get props => [user];
+}
 

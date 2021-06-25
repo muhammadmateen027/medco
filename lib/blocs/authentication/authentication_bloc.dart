@@ -6,6 +6,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:medical_suit/config/config.dart';
 import 'package:medical_suit/services/services.dart';
 import 'package:meta/meta.dart';
+import 'package:supabase/supabase.dart';
 
 import '../../repository/repository_interface.dart';
 
@@ -37,6 +38,10 @@ class AuthenticationBloc
     }
     if (event is SignOut) {
       yield* _signOutToState();
+      return;
+    }
+    if (event is LoadUser) {
+      yield* _getUser();
       return;
     }
   }
@@ -80,6 +85,25 @@ class AuthenticationBloc
   Stream<AuthenticationState> _signOutToState() async* {
     await repo.signOut();
     await locator<Storage>().clearSession();
+    return;
+  }
+
+  Stream<AuthenticationState> _getUser() async* {
+    // Load session from cache/storage
+    String? authSession = await locator<Storage>().getString(
+      key: dotenv.env['AUTH'].toString(),
+    );
+
+    // recover session from client
+    await locator<SupabaseClient>().auth.recoverSession(authSession!);
+
+    // fetch data according to your session
+    User? user = locator<SupabaseClient>().auth.user();
+
+    if (user != null) {
+      yield UserView(user);
+      return;
+    }
     return;
   }
 }
