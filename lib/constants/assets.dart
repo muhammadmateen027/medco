@@ -25,6 +25,12 @@ class Images {
     height: 40,
   );
 
+  final Widget doctorsLogo = SvgPicture.asset(
+    'assets/images/svg/doctors.svg',
+    width: 190,
+    // height: 40,
+  );
+
   final Widget supaBaseImage = Image.network(
     'https://supabase.io/new/images/logo-dark.png',
     width: 300,

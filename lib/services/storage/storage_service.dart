@@ -42,7 +42,7 @@ class StorageService implements Storage {
       navigationService.pushReplacementNamed(RoutesName.home);
       return;
     } catch (error) {
-      navigationService.pushReplacementNamed(RoutesName.signup);
+      navigationService.pushReplacementNamed(RoutesName.login);
       return;
     }
   }

@@ -4,7 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:medical_suit/blocs/blocs.dart';
 import 'package:medical_suit/config/config.dart';
+import 'package:medical_suit/constants/constants.dart';
 import 'package:medical_suit/presentation/global/global.dart';
+
+import 'widgets/widgets.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -23,6 +26,7 @@ class _LoginPageState extends State<LoginPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          AnimatedImage(),
           Text(
             'MedCo',
             style: themeData.textTheme.headline4!.copyWith(

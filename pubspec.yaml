@@ -61,15 +61,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - .env
-    - assets/images/acc_boom.png
-    - assets/images/ic_function_hz.png
-    - assets/images/ic_result_hz.png
-    - assets/images/ic_transform_custom_hz.png
-    - assets/images/ic_transform_fade_in_hz.png
-    - assets/images/ic_transform_fade_out_hz.png
-    - assets/images/ic_transform_global_hz.png
-    - assets/images/ic_transform_native_hz.png
-    - assets/images/logo_fluro.png
+    - assets/images/svg/doctors.svg
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
