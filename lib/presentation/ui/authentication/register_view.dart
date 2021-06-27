@@ -58,23 +58,6 @@ class _RegisterViewState extends State<RegisterView> {
                             }
                           },
                         )
-                        // child: TextFormField(
-                        //   controller: _emailController,
-                        //   cursorColor: Colors.black,
-                        //   style: TextStyle(),
-                        //   decoration: InputDecoration(
-                        //     labelText: 'E-mail',
-                        //     labelStyle: TextStyle(color: Colors.black),
-                        //     focusedBorder: UnderlineInputBorder(
-                        //       borderSide: new BorderSide(color: Colors.black),
-                        //     ),
-                        //   ),
-                        //   validator: (String? value) {
-                        //     if (value!.isEmpty || !value.contains('@')) {
-                        //       return 'Invalid e-mail';
-                        //     }
-                        //   },
-                        // ),
                       ),
                       SizedBox(
                         height: 10,

@@ -8,7 +8,6 @@ import 'package:medical_suit/services/services.dart';
 import 'package:supabase/supabase.dart';
 
 import '../repository/repository.dart';
-import 'navigation_service.dart';
 
 part 'simple_bloc_delegate.dart';
 
