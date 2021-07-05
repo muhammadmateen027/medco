@@ -2,7 +2,7 @@
 
 ### Objective
 
-To present code structure in flutter while.
+To represent code structure in flutter while using `flutter_bloc` as a state management library. 
 
 ### Brief
 
